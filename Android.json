@@ -1,0 +1,542 @@
+{
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "fakeip",
+        "tag": "dns_fakeip",
+        "inet4_range": "198.19.0.0/16",
+        "inet6_range": "fc00::/16"
+      },
+      {
+        "type": "udp",
+        "tag": "dns_proxy",
+        "server": "8.8.8.8",
+        "detour": "⚡ 自动选择"
+      },
+      {
+        "type": "udp",
+        "tag": "dns_local",
+        "server": "223.5.5.5"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": "geosite-category-ads",
+        "action": "reject"
+      },
+      {
+        "rule_set": [
+          "geosite-cn",
+          "geosite-private"
+        ],
+        "server": "dns_local"
+      },
+      {
+        "domain_keyword": [
+          "stun",
+          "turn"
+        ],
+        "server": "dns_proxy"
+      },
+      {
+        "query_type": [
+          "A",
+          "AAAA"
+        ],
+        "server": "dns_fakeip"
+      }
+    ],
+    "final": "dns_proxy",
+    "strategy": "prefer_ipv4",
+    "independent_cache": true
+  },
+  "ntp": {
+    "enabled": true,
+    "interval": "30m0s",
+    "server": "ntp.aliyun.com",
+    "detour": "direct"
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "address": [
+        "172.18.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "mixed"
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "📺 YouTube",
+      "outbounds": [
+        "🇺🇸 vl-reality-MegaBox",
+        "🇺🇸 hy2-MegaBox",
+        "🇺🇸 tu5-MegaBox",
+        "🇺🇸 anytls-MegaBox",
+        "🇺🇸 vl-reality-Alpha",
+        "🇺🇸 hy2-Alpha",
+        "🇺🇸 tu5-Alpha",
+        "🇺🇸 anytls-Alpha"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "⚡ 自动选择",
+      "outbounds": [
+        "🇭🇰 vl-reality-ZhangYida",
+        "🇭🇰 hy2-ZhangYida",
+        "🇭🇰 tu5-ZhangYida",
+        "🇭🇰 anytls-ZhangYida",
+        "🇭🇰 vl-reality-GreenCloudHK",
+        "🇭🇰 hy2-GreenCloudHK",
+        "🇭🇰 tu5-GreenCloudHK",
+        "🇭🇰 anytls-GreenCloudHK"
+      ],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "10m0s",
+      "tolerance": 50
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸 vl-reality-MegaBox",
+      "server": "104.224.153.17",
+      "server_port": 14072,
+      "uuid": "4af9492b-4bb0-4ad7-b0ea-b4967846e7f8",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "8XrLxEa0v1DIsykskNUIOYs4aOPuVcOkUgV6P9r_hH0",
+          "short_id": "95fd6391"
+        }
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇺🇸 hy2-MegaBox",
+      "server": "104.224.153.17",
+      "server_port": 28240,
+      "up_mbps": 20,
+      "down_mbps": 100,
+      "password": "4af9492b-4bb0-4ad7-b0ea-b4967846e7f8",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "tuic",
+      "tag": "🇺🇸 tu5-MegaBox",
+      "server": "104.224.153.17",
+      "server_port": 24037,
+      "uuid": "4af9492b-4bb0-4ad7-b0ea-b4967846e7f8",
+      "password": "4af9492b-4bb0-4ad7-b0ea-b4967846e7f8",
+      "congestion_control": "bbr",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true,
+        "alpn": "h3"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 vl-reality-ZhangYida",
+      "server": "89.251.26.122",
+      "server_port": 14807,
+      "uuid": "dca013f3-2447-4434-b04c-42de6e49034f",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "cUq772-czdn7TD9qXEwCcduoZmBn5N8dQdCCoLC7cBM",
+          "short_id": "7956a311"
+        }
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇭🇰 hy2-ZhangYida",
+      "server": "89.251.26.122",
+      "server_port": 44973,
+      "up_mbps": 20,
+      "down_mbps": 100,
+      "password": "dca013f3-2447-4434-b04c-42de6e49034f",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "tuic",
+      "tag": "🇭🇰 tu5-ZhangYida",
+      "server": "89.251.26.122",
+      "server_port": 58636,
+      "uuid": "dca013f3-2447-4434-b04c-42de6e49034f",
+      "password": "dca013f3-2447-4434-b04c-42de6e49034f",
+      "congestion_control": "bbr",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true,
+        "alpn": "h3"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 vl-reality-GreenCloudHK",
+      "server": "96.9.229.232",
+      "server_port": 59465,
+      "uuid": "0c268d34-1811-48a6-ab46-7624109b8415",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "U4xuJE8tS4fHJL8IHHXacM4aZIzo2qNkTSK36MeweG8",
+          "short_id": "e56206d6"
+        }
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇭🇰 hy2-GreenCloudHK",
+      "server": "96.9.229.232",
+      "server_port": 37773,
+      "up_mbps": 20,
+      "down_mbps": 100,
+      "password": "0c268d34-1811-48a6-ab46-7624109b8415",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "tuic",
+      "tag": "🇭🇰 tu5-GreenCloudHK",
+      "server": "96.9.229.232",
+      "server_port": 41788,
+      "uuid": "0c268d34-1811-48a6-ab46-7624109b8415",
+      "password": "0c268d34-1811-48a6-ab46-7624109b8415",
+      "congestion_control": "bbr",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true,
+        "alpn": "h3"
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇺🇸 vl-reality-Alpha",
+      "server": "45.59.100.78",
+      "server_port": 43876,
+      "uuid": "e6678792-b85c-487c-a513-de79e893ae8e",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "apple.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "uG1h2JIIE99csZJezb59oGabk_Gwge9Qi8dRt8dBmnA",
+          "short_id": "ed045a7b"
+        }
+      }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇺🇸 hy2-Alpha",
+      "server": "45.59.100.78",
+      "server_port": 12475,
+      "up_mbps": 20,
+      "down_mbps": 100,
+      "password": "e6678792-b85c-487c-a513-de79e893ae8e",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "type": "tuic",
+      "tag": "🇺🇸 tu5-Alpha",
+      "server": "45.59.100.78",
+      "server_port": 48212,
+      "uuid": "e6678792-b85c-487c-a513-de79e893ae8e",
+      "password": "e6678792-b85c-487c-a513-de79e893ae8e",
+      "congestion_control": "bbr",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true,
+        "alpn": "h3"
+      }
+    },
+    {
+      "type": "anytls",
+      "tag": "🇺🇸 anytls-MegaBox",
+      "server": "104.224.153.17",
+      "server_port": 45214,
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      },
+      "password": "4af9492b-4bb0-4ad7-b0ea-b4967846e7f8"
+    },
+    {
+      "type": "anytls",
+      "tag": "🇭🇰 anytls-ZhangYida",
+      "server": "89.251.26.122",
+      "server_port": 27771,
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      },
+      "password": "dca013f3-2447-4434-b04c-42de6e49034f"
+    },
+    {
+      "type": "anytls",
+      "tag": "🇭🇰 anytls-GreenCloudHK",
+      "server": "96.9.229.232",
+      "server_port": 23189,
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      },
+      "password": "0c268d34-1811-48a6-ab46-7624109b8415"
+    },
+    {
+      "type": "anytls",
+      "tag": "🇺🇸 anytls-Alpha",
+      "server": "45.59.100.78",
+      "server_port": 33100,
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      },
+      "password": "e6678792-b85c-487c-a513-de79e893ae8e"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "ip_cidr": [
+          "223.5.5.5/32"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-category-ads",
+        "action": "reject"
+      },
+      {
+        "domain_suffix": ".lol",
+        "outbound": "direct"
+      },
+      {
+        "domain_keyword": "plex",
+        "outbound": "🇺🇸 hy2-Alpha"
+      },
+      {
+        "rule_set": [
+          "geosite-youtube",
+          "geosite-google",
+          "geosite-openai",
+          "geosite-spotify",
+          "geosite-anthropic",
+          "geosite-xai"
+        ],
+        "outbound": "📺 YouTube"
+      },
+      {
+        "rule_set": [
+          "geoip-telegram",
+          "geosite-apple",
+          "geosite-microsoft",
+          "geosite-meta",
+          "geosite-tiktok",
+          "geosite-reddit"
+        ],
+        "outbound": "⚡ 自动选择"
+      },
+      {
+        "rule_set": [
+          "geosite-cn",
+          "geoip-cn"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-private",
+        "outbound": "direct"
+      },
+      {
+        "ip_cidr": [
+          "198.19.0.0/16",
+          "fc00::/16"
+        ],
+        "outbound": "⚡ 自动选择"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geosite-category-ads",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-youtube",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-youtube.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-google",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-openai",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-openai.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-spotify",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-spotify.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-apple",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-apple.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-microsoft",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-microsoft.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-meta",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-meta.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-tiktok",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-tiktok.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-anthropic",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-anthropic.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-reddit",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-reddit.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-xai",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-xai.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-telegram",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-private",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-private.srs",
+        "download_detour": "🇺🇸 vl-reality-MegaBox"
+      }
+    ],
+    "final": "⚡ 自动选择",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dns_local"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "store_fakeip": true,
+      "store_rdrc": true
+    }
+  }
+}

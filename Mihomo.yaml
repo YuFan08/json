@@ -220,7 +220,7 @@ proxy-groups:
 
 rules:
   - GEOSITE,category-ads-all,REJECT
-  - DOMAIN-KEYWORD,plex,🇧🇬 BG
+  #- DOMAIN-KEYWORD,plex,🇧🇬 BG
   - DOMAIN-KEYWORD,lax.live.mmcdn,🇺🇸 US
   - DOMAIN-KEYWORD,nrt.live.mmcdn,🇯🇵 JP
   - DOMAIN-KEYWORD,sin.live.mmcdn,🇭🇰 HK
