@@ -1,0 +1,244 @@
+unified-delay: true
+disable-keep-alive: false
+keep-alive-idle: 15
+keep-alive-interval: 15
+tcp-concurrent: true
+find-process-mode: strict
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+external-controller: 127.0.0.1:9000
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+dns:
+  enable: true
+  ipv6: false
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  listen: 127.0.0.1:1053
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+
+  cache-algorithm: arc
+  cache-size: 4096
+
+  fake-ip-filter:
+    - "+.stun.*.*"
+    - "+.nip.io"
+    - "+.local"
+    - "+.lan"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "+.time.*.com"
+    - "+.time.*.gov"
+    - "+.ntp.org.cn"
+    - "+.pool.ntp.org"
+    - "+.bilibili.com"
+    - "+.mcdn.bilivideo.cn"
+    - "+.ghoffice.com"
+    - "+.localhost.ptlogin2.qq.com"
+    - "+.home.arpa"
+    - "+.localdomain"
+    - "+.test"
+    - "xbox.*.microsoft.com"
+    - "+.xboxlive.com"
+    - "+.playstation.net"
+    - "+.playstation.com"
+    - "GEOSITE:private"
+
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  nameserver-policy:
+    "geosite:cn,private":
+      - 223.5.5.5
+      - 119.29.29.29
+      - https://dns.alidns.com/dns-query
+      - https://doh.pub/dns-query
+    "geosite:geolocation-!cn":
+      - https://1.1.1.1/dns-query#🔦 自动链接
+      - https://8.8.8.8/dns-query#🔦 自动链接
+
+tun:
+  enable: true
+  stack: mixed
+  auto-route: true
+  strict-route: true
+  auto-detect-interface: true
+  auto-mtu: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [ 80, 8080, 8880, 2052, 2082, 2086, 2095 ]
+      override-destination: true
+    TLS:
+      ports: [ 443, 8443, 2053, 2083, 2087, 2096 ]
+      override-destination: true
+    QUIC:
+      ports: [ 443, 8443 ]
+      override-destination: true
+
+proxy-providers:
+  Local-Pool:
+    type: file
+    path: ./local.yaml
+  ChunShi:
+    type: http
+    url: "https://subscription.chunshi.lol/yufan/sub?target=clash"
+    interval: 3600
+    path: ./ChunShi.yaml
+  BPB-Normal:
+    type: http
+    url: "https://bpb.chunxi.lol/sub/normal/b4e52da4-afa4-479d-bd0a-044e423520c8?ap\
+      p=clash#%F0%9F%92%A6%20BPB%20Normal"
+    interval: 3600
+    path: ./BPB-Normal.yaml
+
+proxy-groups:
+  - name: "📺 YouTube"
+    type: select
+    proxies:
+      - 🇺🇸 US
+      - 🇯🇵 JP
+      - 🇭🇰 HK
+      - 🇧🇬 BG
+      - 🍃 ChunShi
+      - 💦 BPB-Normal
+
+  - name: "🦋 AI"
+    type: select
+    proxies:
+      - 🇺🇸 US
+      - 🇯🇵 JP
+      - 🇭🇰 HK
+      - 🇧🇬 BG
+      - 🍃 ChunShi
+      - 💦 BPB-Normal
+
+  - name: "🇺🇸 US"
+    type: select
+    use:
+      - Local-Pool
+    filter: "🇺🇸"
+
+  - name: "🇯🇵 JP"
+    type: select
+    use:
+      - Local-Pool
+    filter: "🇯🇵"
+
+  - name: "🇧🇬 BG"
+    type: select
+    use:
+      - Local-Pool
+    filter: "🇧🇬"
+
+  - name: "🇭🇰 HK"
+    type: select
+    use:
+      - Local-Pool
+    filter: "🇭🇰"
+    #filter: "^(?=🇭🇰.*).*(hy2|tu5).*$"
+
+  - name: "🔦 自动链接"
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
+    use:
+      - Local-Pool
+    filter: "hy2|tu5"
+
+  - name: "🎉 Streaming"
+    type: load-balance
+    #strategy: consistent-hashing
+    strategy: round-robin
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    lazy: true
+    max-failed-times: 5
+    use:
+      - Local-Pool
+    #filter: "^(?=.*🇭🇰)(?=.*(hy2|tu5))(?!.*GreenCloudHK).*$"
+    filter: "hy2|tu5"
+
+  - name: "🌍 节点选择"
+    type: select
+    proxies:
+      - 🇺🇸 US
+      - 🇯🇵 JP
+      - 🇭🇰 HK
+      - 🇧🇬 BG
+
+  - name: "🐟 漏网之鱼"
+    type: select
+    proxies:
+      - 🇺🇸 US
+      - 🇯🇵 JP
+      - 🇭🇰 HK
+      - 🇧🇬 BG
+
+  - name: "🍃 ChunShi"
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
+    use:
+      - ChunShi
+
+  - name: "💦 BPB-Normal"
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
+    use:
+      - BPB-Normal
+
+rules:
+  - GEOSITE,category-ads-all,REJECT
+  - DOMAIN-KEYWORD,plex,🇧🇬 BG
+  - DOMAIN-KEYWORD,lax.live.mmcdn,🇺🇸 US
+  - DOMAIN-KEYWORD,nrt.live.mmcdn,🇯🇵 JP
+  - DOMAIN-KEYWORD,sin.live.mmcdn,🇭🇰 HK
+  - DOMAIN-KEYWORD,sof.live.mmcdn,🇧🇬 BG
+  - OR,((DOMAIN-KEYWORD,jav),(DOMAIN-KEYWORD,dmm),(DOMAIN-KEYWORD,mgstage)),🇯🇵
+    JP
+  - OR,((DST-PORT,22),(DST-PORT,2222),(DOMAIN-KEYWORD,lol)),DIRECT
+  - OR,((DOMAIN-KEYWORD,chaturbate),(DOMAIN-KEYWORD,highwebmedia)),🎉 Streaming
+  - GEOSITE,youtube,📺 YouTube
+  - OR,((GEOSITE,google),(GEOSITE,openai),(GEOSITE,xai),(GEOSITE,anthropic),(GEOSITE,cursor)),🦋
+    AI
+  - OR,((GEOSITE,cloudflare),(GEOSITE,microsoft),(GEOSITE,meta)),🌍 节点选择
+  - GEOIP,lan,DIRECT,no-resolve
+  - GEOSITE,CN,DIRECT
+  - MATCH,🐟 漏网之鱼
+
+ntp:
+  enable: true
+  server: ntp.aliyun.com
+  port: 123
+  interval: 1800
