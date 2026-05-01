@@ -82,10 +82,10 @@
         "🇺🇸 hy2-MegaBox",
         "🇺🇸 tu5-MegaBox",
         "🇺🇸 anytls-MegaBox",
-        "🇺🇸 vl-reality-Alpha",
-        "🇺🇸 hy2-Alpha",
-        "🇺🇸 tu5-Alpha",
-        "🇺🇸 anytls-Alpha"
+        "🇧🇬 vl-reality-Sofia",
+        "🇧🇬 hy2-Sofia",
+        "🇧🇬 tu5-Sofia",
+        "🇧🇬 anytls-Sofia"
       ]
     },
     {
@@ -261,10 +261,10 @@
     },
     {
       "type": "vless",
-      "tag": "🇺🇸 vl-reality-Alpha",
-      "server": "45.59.100.78",
-      "server_port": 43876,
-      "uuid": "e6678792-b85c-487c-a513-de79e893ae8e",
+      "tag": "🇧🇬 vl-reality-Sofia",
+      "server": "82.118.235.185",
+      "server_port": 36624,
+      "uuid": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc",
       "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
@@ -275,19 +275,19 @@
         },
         "reality": {
           "enabled": true,
-          "public_key": "uG1h2JIIE99csZJezb59oGabk_Gwge9Qi8dRt8dBmnA",
-          "short_id": "ed045a7b"
+          "public_key": "jH0XFo5MR1A291-dIuJNAZNaLt9r10TnbwD_yneGEEA",
+          "short_id": "d6d2441d"
         }
       }
     },
     {
       "type": "hysteria2",
-      "tag": "🇺🇸 hy2-Alpha",
-      "server": "45.59.100.78",
-      "server_port": 12475,
+      "tag": "🇧🇬 hy2-Sofia",
+      "server": "82.118.235.185",
+      "server_port": 13879,
       "up_mbps": 20,
       "down_mbps": 100,
-      "password": "e6678792-b85c-487c-a513-de79e893ae8e",
+      "password": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc",
       "tls": {
         "enabled": true,
         "server_name": "www.bing.com",
@@ -296,11 +296,11 @@
     },
     {
       "type": "tuic",
-      "tag": "🇺🇸 tu5-Alpha",
-      "server": "45.59.100.78",
-      "server_port": 48212,
-      "uuid": "e6678792-b85c-487c-a513-de79e893ae8e",
-      "password": "e6678792-b85c-487c-a513-de79e893ae8e",
+      "tag": "🇧🇬 tu5-Sofia",
+      "server": "82.118.235.185",
+      "server_port": 63169,
+      "uuid": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc",
+      "password": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc",
       "congestion_control": "bbr",
       "tls": {
         "enabled": true,
@@ -347,15 +347,15 @@
     },
     {
       "type": "anytls",
-      "tag": "🇺🇸 anytls-Alpha",
-      "server": "45.59.100.78",
-      "server_port": 33100,
+      "tag": "🇧🇬 anytls-Sofia",
+      "server": "82.118.235.185",
+      "server_port": 22915,
       "tls": {
         "enabled": true,
         "server_name": "www.bing.com",
         "insecure": true
       },
-      "password": "e6678792-b85c-487c-a513-de79e893ae8e"
+      "password": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc"
     }
   ],
   "route": {
@@ -383,7 +383,7 @@
       },
       {
         "domain_keyword": "plex",
-        "outbound": "🇺🇸 hy2-Alpha"
+        "outbound": "🇧🇬 tu5-Sofia"
       },
       {
         "rule_set": [
