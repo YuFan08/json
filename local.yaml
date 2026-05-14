@@ -163,115 +163,7 @@ proxies:
     }
   - {
       "type": "vless",
-      "name": "🇯🇵 vl-reality-googletokyo",
-      "server": "34.146.36.142",
-      "port": 46977,
-      "uuid": "de65ead0-5426-403c-bd96-d02d24a0a017",
-      "tls": true,
-      "flow": "xtls-rprx-vision",
-      "client-fingerprint": "chrome",
-      "skip-cert-verify": false,
-      "reality-opts":
-        {
-          "public-key": "dTqJFCg5ZsrheRjX8khRQY1QwlFXYDxeL0umZLy19mg",
-          "short-id": "e33e786a",
-        },
-      "network": "tcp",
-      "encryption": "none",
-      "servername": "apple.com",
-    }
-  - {
-      "type": "hysteria2",
-      "name": "🇯🇵 hy2-googletokyo",
-      "server": "34.146.36.142",
-      "port": 59529,
-      "password": "de65ead0-5426-403c-bd96-d02d24a0a017",
-      "sni": "www.bing.com",
-      "skip-cert-verify": true,
-      "tfo": false,
-    }
-  - {
-      "type": "tuic",
-      "name": "🇯🇵 tu5-googletokyo",
-      "server": "34.146.36.142",
-      "port": 36092,
-      "password": "de65ead0-5426-403c-bd96-d02d24a0a017",
-      "uuid": "de65ead0-5426-403c-bd96-d02d24a0a017",
-      "congestion-controller": "bbr",
-      "udp-relay-mode": "native",
-      "alpn": ["h3"],
-      "sni": "www.bing.com",
-      "skip-cert-verify": true,
-      "allowInsecure": "1",
-      "version": 5,
-    }
-  - {
-      "type": "anytls",
-      "name": "🇯🇵 anytls-googletokyo",
-      "server": "34.146.36.142",
-      "port": 53216,
-      "sni": "www.bing.com",
-      "skip-cert-verify": true,
-      "password": "de65ead0-5426-403c-bd96-d02d24a0a017",
-      "allowInsecure": "1",
-    }
-  - {
-      "type": "vless",
-      "name": "🇭🇰 vl-reality-googlehk",
-      "server": "35.220.228.23",
-      "port": 62311,
-      "uuid": "7ca255ba-13ef-4740-84ac-10284e274f1a",
-      "tls": true,
-      "flow": "xtls-rprx-vision",
-      "client-fingerprint": "chrome",
-      "skip-cert-verify": false,
-      "reality-opts":
-        {
-          "public-key": "m8NsYOLTmFKIdR4I3CQ4Mo9AA019F6X1Gfyck6Vr-hA",
-          "short-id": "ef5fb93e",
-        },
-      "network": "tcp",
-      "encryption": "none",
-      "servername": "apple.com",
-    }
-  - {
-      "type": "hysteria2",
-      "name": "🇭🇰 hy2-googlehk",
-      "server": "35.220.228.23",
-      "port": 44859,
-      "password": "7ca255ba-13ef-4740-84ac-10284e274f1a",
-      "sni": "www.bing.com",
-      "skip-cert-verify": true,
-      "tfo": false,
-    }
-  - {
-      "type": "tuic",
-      "name": "🇭🇰 tu5-googlehk",
-      "server": "35.220.228.23",
-      "port": 12818,
-      "password": "7ca255ba-13ef-4740-84ac-10284e274f1a",
-      "uuid": "7ca255ba-13ef-4740-84ac-10284e274f1a",
-      "congestion-controller": "bbr",
-      "udp-relay-mode": "native",
-      "alpn": ["h3"],
-      "sni": "www.bing.com",
-      "skip-cert-verify": true,
-      "allowInsecure": "1",
-      "version": 5,
-    }
-  - {
-      "type": "anytls",
-      "name": "🇭🇰 anytls-googlehk",
-      "server": "35.220.228.23",
-      "port": 47511,
-      "sni": "www.bing.com",
-      "skip-cert-verify": true,
-      "password": "7ca255ba-13ef-4740-84ac-10284e274f1a",
-      "allowInsecure": "1",
-    }
-  - {
-      "type": "vless",
-      "name": "🇧🇬 vl-reality-Alpha",
+      "name": "🇧🇬 vl-reality-Sofia",
       "server": "82.118.235.185",
       "port": 36624,
       "uuid": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc",
@@ -290,7 +182,7 @@ proxies:
     }
   - {
       "type": "hysteria2",
-      "name": "🇧🇬 hy2-Alpha",
+      "name": "🇧🇬 hy2-Sofia",
       "server": "82.118.235.185",
       "port": 13879,
       "password": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc",
@@ -300,7 +192,7 @@ proxies:
     }
   - {
       "type": "tuic",
-      "name": "🇧🇬 tu5-Alpha",
+      "name": "🇧🇬 tu5-Sofia",
       "server": "82.118.235.185",
       "port": 63169,
       "password": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc",
@@ -315,7 +207,7 @@ proxies:
     }
   - {
       "type": "anytls",
-      "name": "🇧🇬 anytls-Alpha",
+      "name": "🇧🇬 anytls-Sofia",
       "server": "82.118.235.185",
       "port": 22915,
       "sni": "www.bing.com",
