@@ -126,6 +126,7 @@ proxy-groups:
       - 🇺🇸 US
       - 🇭🇰 HK
       - 🇧🇬 BG
+      - 🔦 自动链接
       - 🍃 ChunShi
       - 💦 BPB-Normal
 
@@ -133,7 +134,7 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 US
-      - 🇰 HK
+      - 🇭🇰 HK
       - 🇧🇬 BG
       - 🍃 ChunShi
       - 💦 BPB-Normal
@@ -151,7 +152,10 @@ proxy-groups:
     filter: "🇧🇬"
 
   - name: "🇭🇰 HK"
-    type: select
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
     use:
       - Local-Pool
     filter: "🇭🇰"
@@ -211,13 +215,10 @@ proxy-groups:
 
 rules:
   - GEOSITE,category-ads-all,REJECT
-  #- DOMAIN-KEYWORD,plex,🇧🇬 BG
   - DOMAIN-KEYWORD,lax.live.mmcdn,🇺🇸 US
-  #- DOMAIN-KEYWORD,nrt.live.mmcdn,🇯🇵 JP
   - DOMAIN-KEYWORD,sin.live.mmcdn,🇭🇰 HK
   - DOMAIN-KEYWORD,sof.live.mmcdn,🇧🇬 BG
   # OR,((DOMAIN-KEYWORD,jav),(DOMAIN-KEYWORD,dmm),(DOMAIN-KEYWORD,mgstage)),🇯🇵
-  # JP
   - OR,((DST-PORT,22),(DST-PORT,2222),(DOMAIN-KEYWORD,lol)),DIRECT
   - OR,((DOMAIN-KEYWORD,chaturbate),(DOMAIN-KEYWORD,highwebmedia)),🎉 Streaming
   - GEOSITE,youtube,📺 YouTube
