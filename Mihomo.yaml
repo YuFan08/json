@@ -217,9 +217,9 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   - DOMAIN-KEYWORD,lax.live.mmcdn,🇺🇸 US
   - DOMAIN-KEYWORD,sin.live.mmcdn,🇭🇰 HK
-  - DOMAIN-KEYWORD,sof.live.mmcdn,🇧🇬 BG
+  - OR,((DOMAIN-KEYWORD,sof.live.mmcdn),(DOMAIN-SUFFIX,chunshi.lol),(IP-CIDR,82.118.235.185/32)),🇧🇬 BG
   # OR,((DOMAIN-KEYWORD,jav),(DOMAIN-KEYWORD,dmm),(DOMAIN-KEYWORD,mgstage)),🇯🇵
-  - OR,((DST-PORT,22),(DST-PORT,2222),(DOMAIN-KEYWORD,lol)),DIRECT
+  - OR,((DST-PORT,22),(DST-PORT,2222),(DOMAIN-KEYWORD,chunxi)),DIRECT
   - OR,((DOMAIN-KEYWORD,chaturbate),(DOMAIN-KEYWORD,highwebmedia)),🎉 Streaming
   - GEOSITE,youtube,📺 YouTube
   - OR,((GEOSITE,google),(GEOSITE,openai),(GEOSITE,xai),(GEOSITE,anthropic),(GEOSITE,cursor)),🦋
