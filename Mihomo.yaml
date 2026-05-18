@@ -106,18 +106,6 @@ proxy-providers:
   Local-Pool:
     type: file
     path: ./local.yaml
-  ChunShi:
-    type: http
-    url: "https://subscription.chunshi.lol/yufan/sub?target=clash"
-    interval: 300
-    path: ./ChunShi.yaml
-  BPB-Normal:
-    type: http
-    url:
-      "https://bpb.chunxi.lol/sub/normal/b4e52da4-afa4-479d-bd0a-044e423520c8?ap\
-      p=clash#%F0%9F%92%A6%20BPB%20Normal"
-    interval: 300
-    path: ./BPB-Normal.yaml
 
 proxy-groups:
   - name: "📺 YouTube"
@@ -127,8 +115,6 @@ proxy-groups:
       - 🇭🇰 HK
       - 🇧🇬 BG
       - 🔦 自动链接
-      - 🍃 ChunShi
-      - 💦 BPB-Normal
 
   - name: "🦋 AI"
     type: select
@@ -136,8 +122,6 @@ proxy-groups:
       - 🇺🇸 US
       - 🇭🇰 HK
       - 🇧🇬 BG
-      - 🍃 ChunShi
-      - 💦 BPB-Normal
 
   - name: "🇺🇸 US"
     type: select
@@ -196,22 +180,6 @@ proxy-groups:
       - 🇺🇸 US
       - 🇭🇰 HK
       - 🇧🇬 BG
-
-  - name: "🍃 ChunShi"
-    type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 20
-    use:
-      - ChunShi
-
-  - name: "💦 BPB-Normal"
-    type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 20
-    use:
-      - BPB-Normal
 
 rules:
   - GEOSITE,category-ads-all,REJECT

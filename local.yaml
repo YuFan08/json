@@ -108,6 +108,24 @@ proxies:
       "allowInsecure": "1",
     }
   - {
+      "name": "🇭🇰 vm-argo-ZhangYida",
+      "type": "vmess",
+      "server": "104.25.252.14",
+      "port": 8443,
+      "cipher": "auto",
+      "uuid": "dca013f3-2447-4434-b04c-42de6e49034f",
+      "alterId": 0,
+      "tls": true,
+      "network": "ws",
+      "ws-opts":
+        {
+          "path": "/dca013f3-2447-4434-b04c-42de6e49034f-vm",
+          "headers": { "Host": "alice.chunshi.lol" },
+        },
+      "client-fingerprint": "chrome",
+      "servername": "alice.chunshi.lol",
+    }
+  - {
       "type": "vless",
       "name": "🇭🇰 vl-reality-GreenCloudHK",
       "server": "96.9.229.232",
