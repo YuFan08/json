@@ -15,7 +15,7 @@
         "type": "udp",
         "tag": "dns_proxy",
         "server": "8.8.8.8",
-        "detour": "🚀 节点选择"
+        "detour": "⚡ 自动选择"
       },
       {
         "type": "udp",
