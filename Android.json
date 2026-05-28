@@ -78,6 +78,10 @@
       "type": "selector",
       "tag": "🚀 节点选择",
       "outbounds": [
+        "🇯🇵 vl-Awstokyo",
+        "🇯🇵 hy2-Awstokyo",
+        "🇯🇵 tu5-Awstokyo",
+        "🇯🇵 anytls-Awstokyo",
         "🇭🇰 vl-reality-ZhangYida",
         "🇭🇰 hy2-ZhangYida",
         "🇭🇰 tu5-ZhangYida",
@@ -107,7 +111,11 @@
         "🇧🇬 vl-reality-Sofia",
         "🇧🇬 hy2-Sofia",
         "🇧🇬 tu5-Sofia",
-        "🇧🇬 anytls-Sofia"
+        "🇧🇬 anytls-Sofia",
+        "🇯🇵 vl-Awstokyo",
+        "🇯🇵 hy2-Awstokyo",
+        "🇯🇵 tu5-Awstokyo",
+        "🇯🇵 anytls-Awstokyo"
       ]
     },
     {
@@ -379,7 +387,71 @@
       },
       "password": "5dc5a841-57d1-49c8-b8a5-9d4eb8b0f0bc"
     },
-   ],
+    {
+      "tag": "🇯🇵 vl-Awstokyo",
+      "type": "vless",
+      "server": "54.168.86.177",
+      "server_port": 30615,
+      "uuid": "de021a08-2cb3-47d0-8ed6-c57737c50db6",
+      "tls": {
+        "enabled": true,
+        "server_name": "apple.com",
+        "insecure": false,
+        "reality": {
+          "enabled": true,
+          "public_key": "I_r-kGDjCOl0lmEelpGYvMAXPxtls5rXpzL0DzFOKH0",
+          "short_id": "26325b86"
+        },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "packet_encoding": "xudp",
+      "flow": "xtls-rprx-vision"
+    },
+    {
+      "tag": "🇯🇵 hy2-Awstokyo",
+      "type": "hysteria2",
+      "server": "54.168.86.177",
+      "server_port": 26871,
+      "password": "de021a08-2cb3-47d0-8ed6-c57737c50db6",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇯🇵 tu5-Awstokyo",
+      "type": "tuic",
+      "server": "54.168.86.177",
+      "server_port": 31565,
+      "uuid": "de021a08-2cb3-47d0-8ed6-c57737c50db6",
+      "password": "de021a08-2cb3-47d0-8ed6-c57737c50db6",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true,
+        "alpn": [
+          "h3"
+        ]
+      },
+      "congestion_control": "bbr"
+    },
+    {
+      "tag": "🇯🇵 anytls-Awstokyo",
+      "type": "anytls",
+      "server": "54.168.86.177",
+      "server_port": 50536,
+      "password": "de021a08-2cb3-47d0-8ed6-c57737c50db6",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    }
+  ],
   "route": {
     "rules": [
       {
