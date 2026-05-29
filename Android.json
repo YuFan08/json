@@ -97,7 +97,11 @@
         "🇧🇬 vl-reality-Sofia",
         "🇧🇬 hy2-Sofia",
         "🇧🇬 tu5-Sofia",
-        "🇧🇬 anytls-Sofia"
+        "🇧🇬 anytls-Sofia",
+        "🇸🇬 vl-reality-Singapore",
+        "🇸🇬 hy2-Singapore",
+        "🇸🇬 tu5-Singapore",
+        "🇸🇬 anytls-Singapore"
       ]
     },
     {
@@ -115,7 +119,11 @@
         "🇯🇵 vl-Awstokyo",
         "🇯🇵 hy2-Awstokyo",
         "🇯🇵 tu5-Awstokyo",
-        "🇯🇵 anytls-Awstokyo"
+        "🇯🇵 anytls-Awstokyo",
+        "🇸🇬 vl-reality-Singapore",
+        "🇸🇬 hy2-Singapore",
+        "🇸🇬 tu5-Singapore",
+        "🇸🇬 anytls-Singapore"
       ]
     },
     {
@@ -393,6 +401,7 @@
       "server": "54.168.86.177",
       "server_port": 30615,
       "uuid": "de021a08-2cb3-47d0-8ed6-c57737c50db6",
+      "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
         "server_name": "apple.com",
@@ -407,8 +416,7 @@
           "fingerprint": "chrome"
         }
       },
-      "packet_encoding": "xudp",
-      "flow": "xtls-rprx-vision"
+      "packet_encoding": "xudp"
     },
     {
       "tag": "🇯🇵 hy2-Awstokyo",
@@ -445,6 +453,70 @@
       "server": "54.168.86.177",
       "server_port": 50536,
       "password": "de021a08-2cb3-47d0-8ed6-c57737c50db6",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 vl-reality-Singapore",
+      "type": "vless",
+      "server": "168.144.143.170",
+      "server_port": 61937,
+      "uuid": "2a68e721-8a3e-455f-9a6c-ace7de466b42",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "apple.com",
+        "insecure": false,
+        "reality": {
+          "enabled": true,
+          "public_key": "x2WXIbb6AAHmkC8Uh3Ih5vQ7n2Q-V7w7sYxtZfyBU38",
+          "short_id": "7b1ec832"
+        },
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "packet_encoding": "xudp"
+    },
+    {
+      "tag": "🇸🇬 hy2-Singapore",
+      "type": "hysteria2",
+      "server": "168.144.143.170",
+      "server_port": 39513,
+      "password": "2a68e721-8a3e-455f-9a6c-ace7de466b42",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true
+      }
+    },
+    {
+      "tag": "🇸🇬 tu5-Singapore",
+      "type": "tuic",
+      "server": "168.144.143.170",
+      "server_port": 24891,
+      "uuid": "2a68e721-8a3e-455f-9a6c-ace7de466b42",
+      "password": "2a68e721-8a3e-455f-9a6c-ace7de466b42",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.bing.com",
+        "insecure": true,
+        "alpn": [
+          "h3"
+        ]
+      },
+      "congestion_control": "bbr"
+    },
+    {
+      "tag": "🇸🇬 anytls-Singapore",
+      "type": "anytls",
+      "server": "168.144.143.170",
+      "server_port": 47201,
+      "password": "2a68e721-8a3e-455f-9a6c-ace7de466b42",
       "tls": {
         "enabled": true,
         "server_name": "www.bing.com",
