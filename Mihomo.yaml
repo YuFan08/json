@@ -72,8 +72,8 @@ dns:
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
     "geosite:geolocation-!cn":
-      - https://1.1.1.1/dns-query#🔦 自动链接
-      - https://8.8.8.8/dns-query#🔦 自动链接
+      - https://1.1.1.1/dns-query#🦋 自动链接
+      - https://8.8.8.8/dns-query#🦋 自动链接
 
 tun:
   enable: true
@@ -112,28 +112,37 @@ proxy-groups:
     type: select
     proxies:
       - 🇺🇸 US
+      - 🇯🇵 Japan
+      - 🇸🇬 SG
       - 🇭🇰 HK
-      - 🇧🇬 BG
-      - 🔦 自动链接
-
-  - name: "🦋 AI"
-    type: select
-    proxies:
-      - 🇺🇸 US
-      - 🇭🇰 HK
-      - 🇧🇬 BG
+      - 🇧🇬 Bulgaria
 
   - name: "🇺🇸 US"
-    type: select
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
     use:
       - Local-Pool
     filter: "🇺🇸"
 
-  - name: "🇧🇬 BG"
-    type: select
+  - name: "🇧🇬 Bulgaria"
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
     use:
       - Local-Pool
     filter: "🇧🇬"
+
+  - name: "🇯🇵 Japan"
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
+    use:
+      - Local-Pool
+    filter: "🇯🇵"
 
   - name: "🇭🇰 HK"
     type: url-test
@@ -143,9 +152,17 @@ proxy-groups:
     use:
       - Local-Pool
     filter: "🇭🇰"
-    #filter: "^(?=🇭🇰.*).*(hy2|tu5).*$"
 
-  - name: "🔦 自动链接"
+  - name: "🇸🇬 SG"
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
+    use:
+      - Local-Pool
+    filter: "🇸🇬"
+
+  - name: "🦋 自动链接"
     type: url-test
     url: https://www.gstatic.com/generate_204
     interval: 300
@@ -154,48 +171,55 @@ proxy-groups:
       - Local-Pool
     filter: "hy2|tu5"
 
-  - name: "🎉 Streaming"
+  - name: "🎉 Living"
+    type: select
+    proxies:
+      - 🇺🇸 US
+      - 🇧🇬 Bulgaria
+      - 🇭🇰 HK
+
+  - name: "🎈 US/JP"
     type: load-balance
-    #strategy: consistent-hashing
     strategy: round-robin
     url: https://www.gstatic.com/generate_204
     interval: 300
+    tolerance: 20
     lazy: true
-    max-failed-times: 5
     use:
       - Local-Pool
-    #filter: "^(?=.*🇭🇰)(?=.*(hy2|tu5))(?!.*GreenCloudHK).*$"
-    filter: "hy2|tu5"
+    filter: "🇺🇸|🇯🇵"
+
+  - name: "🎞️ SG/HK"
+    type: load-balance
+    strategy: round-robin
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 20
+    lazy: true
+    use:
+      - Local-Pool
+    filter: "(🇸🇬|🇭🇰).*(hy2|tu5)"
 
   - name: "🌍 节点选择"
     type: select
-    proxies:
-      - 🇺🇸 US
-      - 🇭🇰 HK
-      - 🇧🇬 BG
-
-  - name: "🐟 漏网之鱼"
-    type: select
-    proxies:
-      - 🇺🇸 US
-      - 🇭🇰 HK
-      - 🇧🇬 BG
+    use:
+      - Local-Pool
+    filter: "hy2|tu5"
 
 rules:
   - GEOSITE,category-ads-all,REJECT
-  - DOMAIN-KEYWORD,lax.live.mmcdn,🇺🇸 US
-  - DOMAIN-KEYWORD,sin.live.mmcdn,🇭🇰 HK
-  - OR,((DOMAIN-KEYWORD,sof.live.mmcdn),(DOMAIN-KEYWORD,plex),(DOMAIN-SUFFIX,chunshi.lol),(IP-CIDR,82.118.235.185/32)),🇧🇬 BG
-  # OR,((DOMAIN-KEYWORD,jav),(DOMAIN-KEYWORD,dmm),(DOMAIN-KEYWORD,mgstage)),🇯🇵
+  - OR,((DOMAIN-KEYWORD,lax.live.mmcdn)),🎈 US/JP
+  - DOMAIN-KEYWORD,sin.live.mmcdn,🎞️ SG/HK
+  - OR,((DOMAIN-KEYWORD,sof.live.mmcdn),(DOMAIN-KEYWORD,plex),(DOMAIN-KEYWORD,chunshi)),🇧🇬 Bulgaria
+  - OR,((DOMAIN-KEYWORD,jav),(DOMAIN-KEYWORD,dmm),(DOMAIN-KEYWORD,mgstage)),🇯🇵 Japan
   - OR,((DST-PORT,22),(DST-PORT,2222),(DOMAIN-KEYWORD,chunxi)),DIRECT
-  - OR,((DOMAIN-KEYWORD,chaturbate),(DOMAIN-KEYWORD,highwebmedia)),🎉 Streaming
+  - OR,((DOMAIN-KEYWORD,chaturbate),(DOMAIN-KEYWORD,highwebmedia)),🎉 Living
   - GEOSITE,youtube,📺 YouTube
-  - OR,((GEOSITE,google),(GEOSITE,openai),(GEOSITE,xai),(GEOSITE,anthropic),(GEOSITE,cursor)),🦋
-    AI
+  - OR,((GEOSITE,google),(GEOSITE,openai),(GEOSITE,xai),(GEOSITE,anthropic),(GEOSITE,cursor)),🇺🇸 US
   - OR,((GEOSITE,cloudflare),(GEOSITE,microsoft),(GEOSITE,meta)),🌍 节点选择
   - GEOIP,lan,DIRECT,no-resolve
   - GEOSITE,CN,DIRECT
-  - MATCH,🐟 漏网之鱼
+  - MATCH,🦋 自动链接
 
 ntp:
   enable: true
