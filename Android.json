@@ -111,11 +111,7 @@
         "🇺🇸 vl-reality-MegaBox",
         "🇺🇸 hy2-MegaBox",
         "🇺🇸 tu5-MegaBox",
-        "🇺🇸 anytls-MegaBox",
-        "🇯🇵 vl-Awstokyo",
-        "🇯🇵 hy2-Awstokyo",
-        "🇯🇵 tu5-Awstokyo",
-        "🇯🇵 anytls-Awstokyo"
+        "🇺🇸 anytls-MegaBox"
       ]
     },
     {
@@ -574,7 +570,7 @@
       },
       {
         "domain_keyword": "plex",
-        "outbound": "🇧🇬 tu5-Sofia"
+        "outbound": "🎞️ Streaming"
       },
       {
         "rule_set": [
